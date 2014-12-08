@@ -1,0 +1,28 @@
+body{
+	background-color:#ffffff;
+}
+
+#main_table{
+	width:100%;
+}
+
+#menu_column{
+	background-color:#3399FF;
+	vertical-align:top;
+	float:left;
+	padding:10px;
+	color:#ffffff;
+}
+
+#main_column{
+	float:center;
+}
+
+#warnings_column{
+	background-color:#3399FF;
+	float:right;
+	padding:10px;
+	color:#ffffff;
+	height:100%;
+	
+}
