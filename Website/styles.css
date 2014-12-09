@@ -6,34 +6,46 @@ body{
 #main_table{
 	width:100%;
 	table-layout:auto;
+	text-align:center;
 }
 
 #main_row{
 	height:100%;
+	width:50%;
 }
 
-#menu_column{
-	background-color:#3399FF;
+#main_menu_column{
 	vertical-align:top;
-	float:left;
-	padding-right:10px;
-	padding-left:10px;
 	color:#ffffff;
+	width:10%;
+	padding-right:50px;
 }
 
 .menu_row{
-	width:20%;
 }
 
-#main_column{
-	float:center;
+.menu_content{
+	background-color:#3399FF;
+	padding-right:10px;
+	padding-left:10px;
 }
 
-#warnings_column{
+#main_mid_column{
+}
+
+#content_table{
+}
+
+#content_content{
+}
+
+#main_warnings_column{
 	background-color:#3399FF;
 	float:right;
+	vertical-align:top;
 	padding-right:10px;
 	padding-left:10px;
 	color:#ffffff;
+	width:40%
 	
 }
