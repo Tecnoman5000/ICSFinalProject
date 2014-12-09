@@ -46,11 +46,9 @@ body{
 }
 
 #main_warnings_column{
-	float:right;
 	vertical-align:top;
 	color:#ffffff;
 	background-color:#3399FF;
 	padding-right:10px;
 	padding-left:10px;
-	height:100%;
 }
