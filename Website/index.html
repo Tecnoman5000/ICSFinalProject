@@ -4,8 +4,26 @@
   <title>Welcome</title>
   <link rel="stylesheet" href="styles.css">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  
+  <script>
+		function startTime() {
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('txt').innerHTML = h+":"+m+":"+s;
+			var t = setTimeout(function(){startTime()},500);
+		}
+
+		function checkTime(i) {
+			if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+	</script>
 </head>
-<body>
+<body onload="startTime()">
 	<table id="main_table">
 		<tr id="main_row">
 			<td id="main_menu_column">
@@ -22,7 +40,7 @@
 					</tr>
 				</table>
 			</td>
-			<td id="main_mid_column">
+			<td class="main_mid_column">
 				<table id="content_table">
 					<tr class="content_row" align="center">
 						<td id="content_weather"> 
@@ -34,7 +52,7 @@
 								</tr>
 								<tr id="time_row">
 									<td id="time_content">
-										<h3>10:46 AM</h3>	
+										<div id="txt"></div> <!-- clock -->
 									</td>
 								</tr>
 							</table>

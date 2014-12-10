@@ -4,15 +4,18 @@ body{
 	background-color:#ffffff;
 }
 
+html,body{
+}
+
+table,tr,td{
+}
+
 #main_table{
 	width:100%;
-	min-height:100%;
-	table-layout:auto;
 	text-align:center;
 }
 
 #main_row{
-	min-height:100%;
 	width:50%;
 }
 
@@ -33,11 +36,25 @@ body{
 	padding-left:10px;
 }
 
+h3,h1.main_mid_column{
+	margin:0px;
+}
+
 #content_weather{
 	color:#3399FF;
 	padding-bottom:100px;
 	padding-top:100px;
 }
+
+#weather_row,#time_row{
+	line-height:0px;
+}
+
+/*#time_row{    
+  transform:scale(2,1); 
+  -webkit-transform:scale(2,1);
+  display:inline-block; 
+}*/
 
 #content_video_feed{
 	background-color:#3399FF;
