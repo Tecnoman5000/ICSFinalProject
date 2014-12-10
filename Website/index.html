@@ -1,0 +1,96 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  
+  <script>
+		function startTime() {
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('txt').innerHTML = h+":"+m+":"+s;
+			var t = setTimeout(function(){startTime()},500);
+		}
+
+		function checkTime(i) {
+			if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+
+		function add_warning(){
+			// Find a <table> element with id="warnings_table":
+			var table = document.getElementById("warnings_table");
+
+			// Create an empty <tr> element and add it to the 2nd position of the table:
+			var row = table.insertRow(1);
+
+			// Insert new cells (<td> elements) at the 1st position of the "new" <tr> element:
+			var cell1 = row.insertCell(0);
+			cell1.style.backgroundColor = "red";
+
+			// Add some text to the new cells:
+			cell1.innerHTML = "NEW WARNING";
+		}
+	</script>
+</head>
+<body onload="startTime()">
+	<table id="main_table">
+		<tr id="main_row">
+			<td id="main_menu_column">
+				<table id="menu_table">
+					<tr class="menu_row">
+						<td class="menu_content">
+							<h1>Menu</h1>
+						</td>
+					</tr>
+					<tr class="menu_row">
+						<td class="menu_content">
+							<h1>Home</h1>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td class="main_mid_column">
+				<table id="content_table">
+					<tr class="content_row" align="center">
+						<td id="content_weather"> 
+							<table id="weather_table">
+								<tr id="weather_row">
+									<td id="weather_content">
+										<h1>Weather</h1>	
+									</td>
+								</tr>
+								<tr id="time_row">
+									<td id="time_content">
+										<div id="txt"></div> <!-- clock -->
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr align="center">
+						<td id="content_video_feed" align="center">
+							<h1>Video Feed</h1>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td id="main_warnings_column">
+				<table id="warnings_table">
+					<tr>
+						<td>
+							<h1>Warnings</h1>
+							<button onclick="add_warning()">Try it</button>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html> 
