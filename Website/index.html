@@ -36,6 +36,11 @@
 			// Add some text to the new cells:
 			cell1.innerHTML = "NEW WARNING";
 		}
+
+		function change_temp(){
+			// temp.innerText = "10C";
+			document.getElementById("temp").innerHTML = "10&#176";
+		}
 	</script>
 </head>
 <body onload="startTime()">
@@ -62,7 +67,7 @@
 							<table id="weather_table">
 								<tr id="weather_row">
 									<td id="weather_content">
-										<h1>Weather</h1>	
+										<h1 id="temp">-5&#176</h1>
 									</td>
 								</tr>
 								<tr id="time_row">
@@ -85,7 +90,8 @@
 					<tr>
 						<td>
 							<h1>Warnings</h1>
-							<button onclick="add_warning()">Try it</button>
+							<button onclick="add_warning()">Add Warning</button>
+							<button onclick="change_temp()">Change Temp</button>
 						</td>
 					</tr>
 				</table>

@@ -47,6 +47,11 @@ h3,h1.main_mid_column{
 	line-height:0px;
 }
 
+#weather_content{
+	text-align:right;
+	font-size:200%;
+}
+
 /*#time_row{    
   transform:scale(2,1); 
   -webkit-transform:scale(2,1);
