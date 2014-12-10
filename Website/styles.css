@@ -4,9 +4,6 @@ body{
 	background-color:#ffffff;
 }
 
-html,body{
-}
-
 table,tr,td{
 }
 
@@ -55,6 +52,11 @@ h3,h1.main_mid_column{
   -webkit-transform:scale(2,1);
   display:inline-block; 
 }*/
+
+#time_content{
+	padding-top:5px;
+	font-size:205%;
+}
 
 #content_video_feed{
 	background-color:#3399FF;
