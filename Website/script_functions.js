@@ -1,13 +1,30 @@
 var outside_temp_shown = false;
 var previous_minute = 0;
 var num_of_warnings = 0;
+var warnings_timeout = [];
 
+function update(){
+	if (outside_temp_shown){
+		outdoor_temp();
+	}else{
+		if (!outside_temp_shown){
+			indoor_temp();
+		}
+	}
+
+	/*for (i = 0; i < warning_id.length; i++){
+		warnings_timeout[i] -= 1;
+		if
+	}*/
+
+	previous_minute = m;
+}
 
 function startTime() {
 	var today=new Date();
-	var h=today.getHours();
-	var m=today.getMinutes();
-	var s=today.getSeconds();
+	h = today.getHours();
+	m = today.getMinutes();
+	s = today.getSeconds();
 	m = checkTime(m);
 	s = checkTime(s);
 	if (h=>12){ //turn the 24 hour clock, into a 12 hour clock
@@ -19,15 +36,7 @@ function startTime() {
 	}
 	var t = setTimeout(function(){startTime()},500);
 	
-	if (m > previous_minute && outside_temp_shown){
-		outdoor_temp();
-		previous_minute = m;
-	}else{
-		if (m > previous_minute && !outside_temp_shown){
-			indoor_temp();
-			previous_minute = m;
-		}
-	}
+	if (m > previous_minute){update()}
 }
 
 function checkTime(i) {
@@ -54,6 +63,7 @@ function weather_update(){
 
 function indoor_temp(){
 	document.getElementById("temp").innerHTML = "22&#176C";
+	document.getElementById("weather_icon").src="icons/01d.png";
 	outside_temp_shown = false;
 }
 
@@ -66,6 +76,8 @@ function outdoor_temp(){
 }
 
 function add_warning(){
+	if (num_of_warnings < 0){num_of_warnings = 0;}
+
 	// Find a <table> element with id="warnings_table":
 	var table = document.getElementById("warnings_table");
 
@@ -82,7 +94,8 @@ function add_warning(){
 	cell1.innerHTML = "Motion Detected!";
 	fade_in(cell1);
 
-	 num_of_warnings++;
+	warnings_timeout.push(m);
+	num_of_warnings++;
 }
 
 function fade_in(element) {
@@ -99,23 +112,22 @@ function fade_in(element) {
 }
 
 function remove_warning(){
-	var warning_id = "warning_";
-	var warning_row_id = "warning_row_"
+	warning_id = "warning_";
+	warning_row_id = "warning_row_"
 	var current_id_num = num_of_warnings - 1;
 	warning_id += current_id_num.toString();
 	warning_row_id += current_id_num.toString();
-	fade_out(document.getElementById(warning_id));
-    //delete_row(warning_row_id);
-    //document.getElementById(element).remove();
+	fade_out(document.getElementById(warning_id), warning_row_id);
 	num_of_warnings--;
 }
 
-function fade_out(element) {
+function fade_out(element, number) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
         if (op <= 0.1){
             clearInterval(timer);
             element.style.display = 'none';
+            document.getElementById(number).remove();
         }
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
@@ -123,17 +135,6 @@ function fade_out(element) {
     }, 50);
 }
 
-function delete_row(row_id)
-{
-    var row = document.getElementById(row_id);
-    var table = row.parentNode;
-    while ( table && table.tagName != 'TABLE' )
-        table = table.parentNode;
-    if ( !table )
-        return;
-    table.deleteRow(row.rowIndex);
-}
-
-Element.prototype.remove = function() {
+Element.prototype.remove = function() { //use 'document.getElementById(element).remove()'
     this.parentElement.removeChild(this);
 }
