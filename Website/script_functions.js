@@ -1,5 +1,7 @@
-outside_temp_shown = false;
-previous_minute = 0;
+var outside_temp_shown = false;
+var previous_minute = 0;
+var num_of_warnings = 0;
+
 
 function startTime() {
 	var today=new Date();
@@ -65,14 +67,18 @@ function add_warning(){
 
 	// Create an empty <tr> element and add it to the 2nd position of the table:
 	var row = table.insertRow(1);
+	row.setAttribute("id", "warning_row_"+num_of_warnings);
 
 	// Insert new cells (<td> elements) at the 1st position of the "new" <tr> element:
 	var cell1 = row.insertCell(0);
 	cell1.style.backgroundColor = "red";
+	cell1.setAttribute("id", "warning_"+num_of_warnings);
 
 	// Add some text to the new cells:
 	cell1.innerHTML = "Motion Detected!";
 	fade_in(cell1);
+
+	 num_of_warnings++;
 }
 
 function fade_in(element) {
@@ -88,9 +94,19 @@ function fade_in(element) {
     }, 10);
 }
 
-/*function remove_warnings(){
-	
-}*/
+function remove_warning(){
+	alert(num_of_warnings);
+	var warning_id = "warning_";
+	var warning_row_id = "warning_row_"
+	var current_id_num = num_of_warnings - 1;
+	warning_id += current_id_num.toString();
+	warning_row_id += current_id_num.toString();
+	fade_out(document.getElementById(warning_id));
+    //delete_row(warning_row_id);
+    //document.getElementById(element).remove();
+	num_of_warnings--;
+	alert(num_of_warnings);
+}
 
 function fade_out(element) {
     var op = 1;  // initial opacity
@@ -103,4 +119,19 @@ function fade_out(element) {
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op -= op * 0.1;
     }, 50);
+}
+
+function delete_row(row_id)
+{
+    var row = document.getElementById(row_id);
+    var table = row.parentNode;
+    while ( table && table.tagName != 'TABLE' )
+        table = table.parentNode;
+    if ( !table )
+        return;
+    table.deleteRow(row.rowIndex);
+}
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
 }
