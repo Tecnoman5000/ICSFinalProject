@@ -10,8 +10,9 @@ function startTime() {
 	var s=today.getSeconds();
 	m = checkTime(m);
 	s = checkTime(s);
-	if (h>12){ //turn the 24 hour clock, into a 12 hour clock
+	if (h=>12){ //turn the 24 hour clock, into a 12 hour clock
 		h = h-12;
+		if (h == 0){h = 12;}
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" PM"; 
 	}else{
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" AM";
@@ -48,7 +49,7 @@ function weather_update(){
 		var weather_outside_info = JSON.parse(api_input);
 	}
 	
-	return (weather_outside_info.main.temp - 273.15) //return the current temp in C
+	return (weather_outside_info) //return the current temp in C
 }
 
 function indoor_temp(){
@@ -57,7 +58,10 @@ function indoor_temp(){
 }
 
 function outdoor_temp(){
-	document.getElementById("temp").innerHTML = Math.round(weather_update())+"&#176C"; //get current outside temp from api
+	var outside_temp = Math.round(weather_update().main.temp - 273.15);
+	var icon_name = weather_update().weather[0].icon;
+	document.getElementById("temp").innerHTML = outside_temp+"&#176C"; //get current outside temp from api
+	document.getElementById("weather_icon").src="icons/"+icon_name+".png";
 	outside_temp_shown = true;		
 }
 
@@ -95,7 +99,6 @@ function fade_in(element) {
 }
 
 function remove_warning(){
-	alert(num_of_warnings);
 	var warning_id = "warning_";
 	var warning_row_id = "warning_row_"
 	var current_id_num = num_of_warnings - 1;
@@ -105,7 +108,6 @@ function remove_warning(){
     //delete_row(warning_row_id);
     //document.getElementById(element).remove();
 	num_of_warnings--;
-	alert(num_of_warnings);
 }
 
 function fade_out(element) {

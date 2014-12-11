@@ -90,6 +90,10 @@ h3,h1.main_mid_column{
 	line-height:0px;
 }
 
+#weather_icon{
+	float:left;
+}
+
 #weather_content{
 	text-align:right;
 	font-size:200%;
@@ -104,6 +108,7 @@ h3,h1.main_mid_column{
 #time_content{
 	padding-top:5px;
 	font-size:205%;
+	width:220px;
 }
 
 #content_video_feed{
