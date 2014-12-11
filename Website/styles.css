@@ -36,6 +36,34 @@ table,tr,td{
 	height:60px;
 }
 
+a:link.menu_button,a:visited.menu_button,a:hover.menu_button,a:active.menu_button{
+	text-decoration:none;
+	color:#ffffff;
+}
+
+a:hover.menu_button{
+	color:#D3D3D3;
+}
+
+a:active.menu_button{
+	color:#696969;
+}
+
+h1.menu_button{
+	cursor:pointer;
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+}
+
+h1:hover.menu_button{
+	color:#D3D3D3;
+}
+
+h1:active.menu_button{
+	color:#696969;
+}
+
 h3,h1.main_mid_column{
 	margin:0px;
 }
