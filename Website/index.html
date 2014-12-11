@@ -6,6 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   
   <script>
+		outside_temp_shown = false;
 		previous_minute = 0;
   
 		function startTime() {
@@ -23,9 +24,14 @@
 			}
 			var t = setTimeout(function(){startTime()},500);
 			
-			if (m > previous_minute){
+			if (m > previous_minute && outside_temp_shown){
 				outdoor_temp();
 				previous_minute = m;
+			}else{
+				if (m > previous_minute && !outside_temp_shown){
+					indoor_temp();
+					previous_minute = m;
+				}
 			}
 		}
 
@@ -53,10 +59,12 @@
 
 		function indoor_temp(){
 			document.getElementById("temp").innerHTML = "22&#176C";
+			outside_temp_shown = false;
 		}
 		
 		function outdoor_temp(){
 			document.getElementById("temp").innerHTML = Math.round(weather_update())+"&#176C"; //get current outside temp from api
+			outside_temp_shown = true;		
 		}
 
 		function add_warning(){
@@ -73,6 +81,11 @@
 			// Add some text to the new cells:
 			cell1.innerHTML = "Motion Detected!";
 		}
+		
+		/*function remove_warnings(){
+			
+		}*/
+
 	</script>
 </head>
 <body onload="startTime()">
@@ -117,11 +130,6 @@
 					<tr class="content_row" align="center">
 						<td id="content_weather"> 
 							<table id="weather_table">
-								<tr>
-									<td>
-										<h1 id="id01"></h1>
-									</td>
-								</tr>
 								<tr id="weather_row">
 									<td id="weather_content">
 										<h1 id="temp">-6&#176C</h1>
