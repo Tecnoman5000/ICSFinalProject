@@ -33,7 +33,7 @@ function second_update(){
 
 			//alert(num_of_warnings);
 
-			//warnings_timeout.splice(i,1);
+			warnings_timeout.splice(i,1);
 			num_of_warnings--;
 
 			//alert(warnings_timeout);
@@ -51,8 +51,8 @@ function startTime() {
 	s = today.getSeconds();
 	m = checkTime(m);
 	s = checkTime(s);
-	if (h > 12){ //turn the 24 hour clock, into a 12 hour clock
-		h = (h-12)+1;
+	if (h => 12){ //turn the 24 hour clock, into a 12 hour clock
+		h = (h-12);
 		if (h == 0){h = 12;}
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" PM"; 
 	}else{
@@ -123,8 +123,7 @@ function add_warning(){
 	cell1.style.backgroundColor = "red";
 	cell1.style.paddingLeft = "2px";
 	cell1.style.paddingRight = "2px";
-	cell1.style.display = 'none';
-	cell1.style.filter = 'alpha(opacity=1)';
+	cell1.style.opacity="0.0"
 	cell1.setAttribute("id", "warning_"+num_of_warnings);
 
 	// Add some text to the new cells:
@@ -138,7 +137,6 @@ function add_warning(){
 function fade_in(element) {
     var op = 0.1;  // initial opacity
     element.style.display = 'block';
-    element.style.filter = 'alpha(opacity=1)';
     var timer = setInterval(function () {
         if (op >= 10){
             clearInterval(timer);
@@ -179,4 +177,7 @@ function fade_out(element, row) {
 
 Element.prototype.remove = function() { //use 'document.getElementById(element).remove()'
     this.parentElement.removeChild(this);
+}
+
+function mysql(){
 }
