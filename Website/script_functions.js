@@ -102,10 +102,12 @@ function add_warning(){
 	// Insert new cells (<td> elements) at the 1st position of the "new" <tr> element:
 	var cell1 = row.insertCell(0);
 	cell1.style.backgroundColor = "red";
+	cell1.style.paddingLeft = "2px";
+	cell1.style.paddingRight = "2px";
 	cell1.setAttribute("id", "warning_"+num_of_warnings);
 
 	// Add some text to the new cells:
-	cell1.innerHTML = "Motion Detected!";
+	cell1.innerHTML = "Motion Detected!: " + s;
 	fade_in(cell1);
 
 	warnings_timeout.push(s);
