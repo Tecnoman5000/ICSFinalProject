@@ -33,13 +33,15 @@ function startTime() {
 	s = today.getSeconds();
 	m = checkTime(m);
 	s = checkTime(s);
-	if (h=>12){ //turn the 24 hour clock, into a 12 hour clock
+	/*if (h=>12){ //turn the 24 hour clock, into a 12 hour clock
 		h = h-12;
 		if (h == 0){h = 12;}
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" PM"; 
 	}else{
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" AM";
-	}
+	}*/
+	document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+	
 	var t = setTimeout(function(){startTime()},500);
 	
 	if (previous_second > s){
