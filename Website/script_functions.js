@@ -1,9 +1,10 @@
 var outside_temp_shown = false;
 var previous_minute = 0;
+var previous_second = 0;
 var num_of_warnings = 0;
 var warnings_timeout = [];
 
-function update(){
+function minute_update(){
 	if (outside_temp_shown){
 		outdoor_temp();
 	}else{
@@ -11,13 +12,18 @@ function update(){
 			indoor_temp();
 		}
 	}
-
-	/*for (i = 0; i < warning_id.length; i++){
-		warnings_timeout[i] -= 1;
-		if
-	}*/
-
 	previous_minute = m;
+}
+
+function second_update(){
+	for (var i = 0; i < warnings_timeout.length; i++){
+		if (warnings_timeout[i] == s){
+			remove_warning();
+			warnings_timeout.splace(i,1);
+		}
+	}
+	
+	previous_second = s;
 }
 
 function startTime() {
@@ -36,7 +42,15 @@ function startTime() {
 	}
 	var t = setTimeout(function(){startTime()},500);
 	
-	if (m > previous_minute){update()}
+	if (previous_second > s){
+		previous_second = s;
+	}
+	if (previous_minute > m){
+		previous_minute = m;
+	}
+	
+	if (m > previous_minute){minute_update()};
+	if (s > previous_second){second_update()};
 }
 
 function checkTime(i) {
@@ -94,7 +108,7 @@ function add_warning(){
 	cell1.innerHTML = "Motion Detected!";
 	fade_in(cell1);
 
-	warnings_timeout.push(m);
+	warnings_timeout.push(s);
 	num_of_warnings++;
 }
 
