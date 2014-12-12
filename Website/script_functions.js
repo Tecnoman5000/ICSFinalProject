@@ -18,11 +18,29 @@ function minute_update(){
 function second_update(){
 	for (var i = 0; i < warnings_timeout.length; i++){
 		if (warnings_timeout[i] == s){
-			remove_warning();
-			warnings_timeout.splace(i,1);
+			warning_id = "warning_";
+            warning_row_id = "warning_row_"
+            var current_id_num = num_of_warnings - 1;
+            warning_id += current_id_num.toString();
+            warning_row_id += current_id_num.toString();
+
+			var e = document.getElementById(warning_id);
+			e.setAttribute("id", "toDelete");
+			e = document.getElementById(warning_row_id);
+            e.setAttribute("id", "toDelete_row");
+
+            //alert("id change true");
+
+			//alert(num_of_warnings);
+
+			//warnings_timeout.splice(i,1);
+			num_of_warnings--;
+
+			//alert(warnings_timeout);
 		}
+
 	}
-	
+	remove_warning();
 	previous_second = s;
 }
 
@@ -33,14 +51,13 @@ function startTime() {
 	s = today.getSeconds();
 	m = checkTime(m);
 	s = checkTime(s);
-	/*if (h=>12){ //turn the 24 hour clock, into a 12 hour clock
-		h = h-12;
+	if (h > 12){ //turn the 24 hour clock, into a 12 hour clock
+		h = (h-12)+1;
 		if (h == 0){h = 12;}
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" PM"; 
 	}else{
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" AM";
-	}*/
-	document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+	}
 	
 	var t = setTimeout(function(){startTime()},500);
 	
@@ -106,46 +123,53 @@ function add_warning(){
 	cell1.style.backgroundColor = "red";
 	cell1.style.paddingLeft = "2px";
 	cell1.style.paddingRight = "2px";
+	cell1.style.display = 'none';
+	cell1.style.filter = 'alpha(opacity=1)';
 	cell1.setAttribute("id", "warning_"+num_of_warnings);
 
 	// Add some text to the new cells:
 	cell1.innerHTML = "Motion Detected!: " + s;
 	fade_in(cell1);
 
-	warnings_timeout.push(s);
+	warnings_timeout.push(s-1);
 	num_of_warnings++;
 }
 
 function fade_in(element) {
     var op = 0.1;  // initial opacity
     element.style.display = 'block';
+    element.style.filter = 'alpha(opacity=1)';
     var timer = setInterval(function () {
-        if (op >= 1){
+        if (op >= 10){
             clearInterval(timer);
         }
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += op * 0.1;
-    }, 10);
+        op += 0.1;
+    }, 100);
 }
 
 function remove_warning(){
-	warning_id = "warning_";
-	warning_row_id = "warning_row_"
-	var current_id_num = num_of_warnings - 1;
-	warning_id += current_id_num.toString();
-	warning_row_id += current_id_num.toString();
-	fade_out(document.getElementById(warning_id), warning_row_id);
-	num_of_warnings--;
+
+	/*for(var i = 0; i < rm_ids.length; i++){
+		warning_id = "warning_";
+		warning_row_id = "warning_row_";
+		warning_id += rm_ids[i].toString();
+		warning_row_id += rm_ids[i].toString();
+		fade_out(document.getElementById(warning_id), warning_row_id);
+		rm_ids.splice(i, 1);
+		num_of_warnings--;
+	}*/
+		fade_out(document.getElementById("toDelete"), "toDelete_row");
 }
 
-function fade_out(element, number) {
-    var op = 1;  // initial opacity
+function fade_out(element, row) {
+    var op = 10;  // initial opacity
     var timer = setInterval(function () {
         if (op <= 0.1){
             clearInterval(timer);
             element.style.display = 'none';
-            document.getElementById(number).remove();
+            document.getElementById(row).remove();
         }
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
