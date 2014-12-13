@@ -28,15 +28,8 @@ function second_update(){
 			e.setAttribute("id", "toDelete");
 			e = document.getElementById(warning_row_id);
             e.setAttribute("id", "toDelete_row");
-
-            //alert("id change true");
-
-			//alert(num_of_warnings);
-
 			warnings_timeout.splice(i,1);
 			num_of_warnings--;
-
-			//alert(warnings_timeout);
 		}
 
 	}
@@ -148,16 +141,6 @@ function fade_in(element) {
 }
 
 function remove_warning(){
-
-	/*for(var i = 0; i < rm_ids.length; i++){
-		warning_id = "warning_";
-		warning_row_id = "warning_row_";
-		warning_id += rm_ids[i].toString();
-		warning_row_id += rm_ids[i].toString();
-		fade_out(document.getElementById(warning_id), warning_row_id);
-		rm_ids.splice(i, 1);
-		num_of_warnings--;
-	}*/
 		fade_out(document.getElementById("toDelete"), "toDelete_row");
 }
 

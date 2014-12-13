@@ -9,43 +9,47 @@
 <body onload="startTime()">
 	<table id="main_table">
 		<tr id="main_row">
-			<td id="main_menu_column">
-				<table id="menu_table">
-					<tr class="menu_row">
-						<td class="menu_content">
-							<h1>
-								<a href="index.html" class="menu_button">Menu</a>
-							</h1>
-						</td>
-					</tr>
-					<tr class="menu_row">
-						<td class="menu_content">
-							<h1 class="menu_button">Home</h1>
-						</td>
-					</tr>
-					<tr>
-						<td class="menu_content">
-							<h1 onclick="add_warning()" class="menu_button" id="add_warning_button">Add Warning</h1>
-						</td>
-					</tr>
-					<tr>
-						<td class="menu_content">
-							<h1 onclick="remove_warning()" class="menu_button">Remove Warning</h1>
-						</td>
-					</tr>
-					<tr>
-						<td class="menu_content">
-							<h1 onclick="indoor_temp()" class="menu_button">Indoor Temp</h1>
-						</td>
-					</tr>	
-					<tr>
-						<td class="menu_content">
-							<h1 onclick="outdoor_temp()" class="menu_button">Outdoor Temp</h1>
-						</td>
-					</tr>
-				</table>
+			<td id="main_menu_cell">
+				<div id="main_menu_div">
+					<table id="menu_table">
+						<tbody id="menu_tbody">
+							<tr class="menu_row">
+								<td class="menu_content">
+									<h1>
+										<a href="index.html" class="menu_button">Menu</a>
+									</h1>
+								</td>
+							</tr>
+							<tr class="menu_row">
+								<td class="menu_content">
+									<h1 class="menu_button">Home</h1>
+								</td>
+							</tr>
+							<tr class="menu_row">
+								<td class="menu_content">
+									<h1 onclick="add_warning()" class="menu_button" id="add_warning_button">Add Warning</h1>
+								</td>
+							</tr>
+							<tr class="menu_row">
+								<td class="menu_content">
+									<h1 onclick="remove_warning()" class="menu_button">Remove Warning</h1>
+								</td>
+							</tr>
+							<tr class="menu_row">
+								<td class="menu_content">
+									<h1 onclick="indoor_temp()" class="menu_button">Indoor Temp</h1>
+								</td>
+							</tr>	
+							<tr class="menu_row">
+								<td class="menu_content">
+									<h1 onclick="outdoor_temp()" class="menu_button">Outdoor Temp</h1>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</td>
-			<td class="main_mid_column"  align="center">
+			<td id="main_mid_cell"  align="center">
 				<table id="content_table">
 					<tr class="content_row" align="center">
 						<td id="content_weather"> 
@@ -71,14 +75,16 @@
 					</tr>
 				</table>
 			</td>
-			<td id="main_warnings_column">
-				<table id="warnings_table">
-					<tr>
-						<td>
-							<h1>Warnings</h1>
-						</td>
-					</tr>
-				</table>
+			<td id="main_warnings_cell">
+				<div id="warnings_div">
+					<table id="warnings_table">
+						<tr class="warnings_row">
+							<td id="warnings_cell">
+								<h1>Warnings</h1>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</td>
 		</tr>
 	</table>
