@@ -44,14 +44,14 @@ function startTime() {
 	s = today.getSeconds();
 	m = checkTime(m);
 	s = checkTime(s);
-	if (h => 12){ //turn the 24 hour clock, into a 12 hour clock
-		h = (h-12);
-		if (h == 0){h = 12;}
+	/*if (h => 12){ //turn the 24 hour clock, into a 12 hour clock
+
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" PM"; 
 	}else{
 		document.getElementById('clock').innerHTML = h+":"+m+":"+s+" AM";
-	}
-	
+	}*/
+	document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+
 	var t = setTimeout(function(){startTime()},500);
 	
 	if (previous_second > s){
@@ -162,5 +162,19 @@ Element.prototype.remove = function() { //use 'document.getElementById(element).
     this.parentElement.removeChild(this);
 }
 
-function mysql(){
+function menu_open(){
+	// Find a <table> element with id="warnings_table":
+	var table = document.getElementById("menu_table");
+
+	// Create an empty <tr> element and add it to the 2nd position of the table:
+	var row = table.insertRow(1);
+	row.setAttribute("id", "menu_row");
+
+	// Insert new cells (<td> elements) at the 1st position of the "new" <tr> element:
+	var cell1 = row.insertCell(0);
+	cell1.style.backgroundColor = "red";
+	cell1.style.paddingLeft = "2px";
+	cell1.style.paddingRight = "2px";
+	cell1.style.opacity="0.0"
+	cell1.setAttribute("id", "warning_"+num_of_warnings);
 }

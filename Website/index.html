@@ -16,13 +16,15 @@
 							<tr class="menu_row">
 								<td class="menu_content">
 									<h1>
-										<a href="index.html" class="menu_button">Menu</a>
+										<h1>Menu</h1>
 									</h1>
 								</td>
 							</tr>
 							<tr class="menu_row">
 								<td class="menu_content">
-									<h1 class="menu_button">Home</h1>
+									<a href="index.html" class="menu_button">
+										<h1>Home</h1>
+									</a>
 								</td>
 							</tr>
 							<tr class="menu_row">
@@ -50,30 +52,32 @@
 				</div>
 			</td>
 			<td id="main_mid_cell"  align="center">
-				<table id="content_table">
-					<tr class="content_row" align="center">
-						<td id="content_weather"> 
-							<table id="weather_table">
-								<tr id="weather_row">
-									<td id="weather_content">
-										<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
-										<h1 id="temp">22&#176C</h1>
-									</td>
-								</tr>
-								<tr id="time_row">
-									<td id="time_content">
-										<div id="clock"></div> <!-- clock -->
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr align="center">
-						<td id="content_video_feed" align="center">
-							<h1>Video Feed</h1>
-						</td>
-					</tr>
-				</table>
+				<div id="content_div">
+					<table id="content_table">
+						<tr class="content_row" align="center">
+							<td id="content_weather">
+								<table id="weather_table">
+									<tr id="weather_row">
+										<td id="weather_content">
+											<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
+											<h1 id="temp">22&#176C</h1>
+										</td>
+									</tr>
+									<tr id="time_row">
+										<td id="time_content">
+											<div id="clock"></div> <!-- clock -->
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr align="center">
+							<td id="content_video_feed" align="center">
+								<h1>Video Feed</h1>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</td>
 			<td id="main_warnings_cell">
 				<div id="warnings_div">

@@ -71,7 +71,7 @@ h3,h1.main_mid_cell{
 	margin:0px;
 }
 
-.main_mid_cell{
+#content_div{
 	vertical-align:top;
 }
 
@@ -79,6 +79,11 @@ h3,h1.main_mid_cell{
 	color:#3399FF;
 	padding-bottom:75px;
 	padding-top:100px;
+}
+
+#weather_table{
+	height:100px;
+	width:40%;
 }
 
 #weather_row,#time_row{
@@ -101,7 +106,7 @@ h3,h1.main_mid_cell{
 }*/
 
 #time_content{
-	font-size:255%;
+	font-size:350%;
 	width:230;
 }
 
