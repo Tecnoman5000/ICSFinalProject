@@ -1,24 +1,24 @@
 var outside_temp_shown = false;
-var previous_minute = 0;
-var previous_second = 0;
-var num_of_warnings = 0;
-var warnings_timeout = [];
-var input_temp = '22';
+var previous_minute = 0; //start the timed minute check
+var previous_second = 0; //start the timed second check
+var num_of_warnings = 0; //hold the number of active warnings
+var warnings_timeout = []; //hold the point at which a warning should be removed
+var pro_indoor_temp = '22'; //hold the init indoor temp
 
+//run on the minute
 function minute_update(){
-	if (outside_temp_shown){
-		outdoor_temp();
-	}else{
-		if (!outside_temp_shown){
-			indoor_temp(input_temp);
-		}
+	if (outside_temp_shown){ //check is the outside temp is currently displayed
+		outdoor_temp(); //update outside temp
+	}else{ //if inside temp is displayed
+			indoor_temp(pro_indoor_temp); //update indoor temp
 	}
-	previous_minute = m;
+	previous_minute = m; //update minute timer
 }
 
+//run on the second
 function second_update(){
-	for (var i = 0; i < warnings_timeout.length; i++){
-		if (warnings_timeout[i] == s){
+	for (var i = 0; i < warnings_timeout.length; i++){ //for the number of warnings displayed
+		if (warnings_timeout[i] == s){ //if the current second is the same as the end time for the warning
 			warning_id = "warning_";
             warning_row_id = "warning_row_"
             var current_id_num = num_of_warnings - 1;
@@ -71,6 +71,7 @@ function checkTime(i) {
 	return i;
 }
 
+//weather api interface
 function weather_update(){
 	var xmlhttp = new XMLHttpRequest();
 	var url = "http://api.openweathermap.org/data/2.5/weather?q=kingston,canada";
@@ -80,30 +81,34 @@ function weather_update(){
 	console.log(xmlhttp.status);
 	console.log(xmlhttp.statusText);
 	
-	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-		var api_input = xmlhttp.responseText;
-		var weather_outside_info = JSON.parse(api_input);
+	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { //check to see if connection was successful
+		var api_input = xmlhttp.responseText; //hold the api JSON input
+		var weather_outside_info = JSON.parse(api_input); //Format input
 	}
 	
-	return (weather_outside_info) //return the current temp in C
+	return (weather_outside_info) //return the current temp
 }
 
+//display indoor temp
 function indoor_temp(pro_indoor_temp){
-	document.getElementById("temp").innerHTML = pro_indoor_temp+"&#176C";
-	document.getElementById("weather_icon").src="icons/01d.png";
+	document.getElementById("temp").innerHTML = pro_indoor_temp+"&#176C"; //find element and update it
+	document.getElementById("weather_icon").src="icons/01d.png"; // update icon
 	outside_temp_shown = false;
 }
 
+//display outside temp
 function outdoor_temp(){
-	var outside_temp = Math.round(weather_update().main.temp - 273.15);
-	var icon_name = weather_update().weather[0].icon;
+	var outside_temp = Math.round(weather_update().main.temp - 273.15); //calculate the temp in C
+	var icon_name = weather_update().weather[0].icon; //hold icon name
 	document.getElementById("temp").innerHTML = outside_temp+"&#176C"; //get current outside temp from api
-	document.getElementById("weather_icon").src="icons/"+icon_name+".png";
-	outside_temp_shown = true;		
+	document.getElementById("weather_icon").src="icons/"+icon_name+".png"; // update weather icon
+	outside_temp_shown = true;
 }
 
+
+//add warnings
 function add_warning(){
-	if (num_of_warnings < 0){num_of_warnings = 0;}
+	if (num_of_warnings < 0){num_of_warnings = 0;} //make sure the number of warnings isn't below zero
 
 	// Find a <table> element with id="warnings_table":
 	var table = document.getElementById("warnings_table");
@@ -124,45 +129,18 @@ function add_warning(){
 	cell1.innerHTML = "Motion Detected!: " + s;
 	fade_in(cell1);
 
+	//add timeout to array
 	warnings_timeout.push(s-1);
 	num_of_warnings++;
 }
 
-function fade_in(element) {
-    var op = 0.1;  // initial opacity
-    element.style.display = 'block';
-    var timer = setInterval(function () {
-        if (op >= 10){
-            clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += 0.1;
-    }, 100);
-}
-
+//remove warnings (needs alot of work)
 function remove_warning(){
 		fade_out(document.getElementById("toDelete"), "toDelete_row");
 }
 
-function fade_out(element, row) {
-    var op = 10;  // initial opacity
-    var timer = setInterval(function () {
-        if (op <= 0.1){
-            clearInterval(timer);
-            element.style.display = 'none';
-            document.getElementById(row).remove();
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= op * 0.1;
-    }, 50);
-}
 
-Element.prototype.remove = function() { //use 'document.getElementById(element).remove()'
-    this.parentElement.removeChild(this);
-}
-
+//testing for menu animation
 function menu_open(){
 	/*// Find a <table> element with id="menu_table":
 	var table = document.getElementById("menu_table");
@@ -177,14 +155,57 @@ function menu_open(){
 	button_home.innerHTML = "<a href='index.html' class='menu_button'><h1>Home</h1></a>";*/
 }
 
+//testing with user input
 function user_input(){
-	input_temp = prompt("Please enter indoor temp", "temp");
-    if (input_temp != null) {
-    	alert(input_temp);
-    	input_temp = String(input_temp)
-    	alert(input_temp);
-		indoor_temp(input_temp);
+	input_temp = prompt("Please enter indoor temp", "temp"); //create pop-up window asking for the temp
+    if (input_temp != null && input_temp != '' && isNumber(input_temp) && input_temp.length <= 2) { //check for a proper input
+		indoor_temp(input_temp); //update the temp display
     }else{
-    	alert('Invalid Input!');
+    	alert('Invalid Input!'); //alert that the input wasn't valid
     }
+}
+
+/////////////////////////
+/////tool functions/////
+////////////////////////
+
+//fade in element
+function fade_in(element) {
+    var op = 0.1;  // initial opacity
+    element.style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 10){
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += 0.1;
+    }, 100);
+}
+
+//fade out element
+function fade_out(element, row) {
+    var op = 10;  // initial opacity
+    var timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+            element.style.display = 'none';
+            document.getElementById(row).remove();
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.1;
+    }, 50);
+}
+
+//return if a string is a number
+function isNumber(num_to_check){
+    re = /^[A-Za-z]+$/; //parameters for the check
+    if(re.test(num_to_check)){return false;} //if it contains characters that match the parameters
+    else{return true;} //if it passes
+}
+
+//use to remove elements cleanly
+Element.prototype.remove = function() { //usage 'document.getElementById(element).remove()'
+    this.parentElement.removeChild(this);
 }
