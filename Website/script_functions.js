@@ -5,6 +5,13 @@ var num_of_warnings = 0; //hold the number of active warnings
 var warnings_timeout = []; //hold the point at which a warning should be removed
 var pro_indoor_temp = '22'; //hold the init indoor temp
 
+//init function
+function init(){
+	startTime();
+	second_update();
+	minute_update();
+}
+
 //run on the minute
 function minute_update(){
 	if (outside_temp_shown){ //check is the outside temp is currently displayed
@@ -12,7 +19,8 @@ function minute_update(){
 	}else{ //if inside temp is displayed
 			indoor_temp(pro_indoor_temp); //update indoor temp
 	}
-	previous_minute = m; //update minute timer
+
+	var minute = setTimeout(minute_update, 60000);
 }
 
 //run on the second
@@ -35,7 +43,7 @@ function second_update(){
 
 	}
 	remove_warning();
-	previous_second = s;
+	var second = setTimeout(second_update, 1000);
 }
 
 function startTime() {
@@ -54,16 +62,6 @@ function startTime() {
 	document.getElementById('clock').innerHTML = h+":"+m+":"+s;
 
 	var t = setTimeout(function(){startTime()},500);
-	
-	if (previous_second > s){
-		previous_second = s;
-	}
-	if (previous_minute > m){
-		previous_minute = m;
-	}
-	
-	if (m > previous_minute){minute_update()};
-	if (s > previous_second){second_update()};
 }
 
 function checkTime(i) {
@@ -134,7 +132,7 @@ function add_warning(){
 	num_of_warnings++;
 }
 
-//remove warnings (needs alot of work)
+//remove warnings (needs a lot of work)
 function remove_warning(){
 		fade_out(document.getElementById("toDelete"), "toDelete_row");
 }
