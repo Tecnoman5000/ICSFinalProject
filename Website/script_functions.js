@@ -3,13 +3,14 @@ var previous_minute = 0;
 var previous_second = 0;
 var num_of_warnings = 0;
 var warnings_timeout = [];
+var input_temp = '22';
 
 function minute_update(){
 	if (outside_temp_shown){
 		outdoor_temp();
 	}else{
 		if (!outside_temp_shown){
-			indoor_temp();
+			indoor_temp(input_temp);
 		}
 	}
 	previous_minute = m;
@@ -87,8 +88,8 @@ function weather_update(){
 	return (weather_outside_info) //return the current temp in C
 }
 
-function indoor_temp(){
-	document.getElementById("temp").innerHTML = "22&#176C";
+function indoor_temp(pro_indoor_temp){
+	document.getElementById("temp").innerHTML = pro_indoor_temp+"&#176C";
 	document.getElementById("weather_icon").src="icons/01d.png";
 	outside_temp_shown = false;
 }
@@ -163,18 +164,27 @@ Element.prototype.remove = function() { //use 'document.getElementById(element).
 }
 
 function menu_open(){
-	// Find a <table> element with id="warnings_table":
+	/*// Find a <table> element with id="menu_table":
 	var table = document.getElementById("menu_table");
 
 	// Create an empty <tr> element and add it to the 2nd position of the table:
 	var row = table.insertRow(1);
-	row.setAttribute("id", "menu_row");
+	row.className = "menu_row";
 
 	// Insert new cells (<td> elements) at the 1st position of the "new" <tr> element:
-	var cell1 = row.insertCell(0);
-	cell1.style.backgroundColor = "red";
-	cell1.style.paddingLeft = "2px";
-	cell1.style.paddingRight = "2px";
-	cell1.style.opacity="0.0"
-	cell1.setAttribute("id", "warning_"+num_of_warnings);
+	var button_home = row.insertCell(0);
+	button_home.className = "menu_content";
+	button_home.innerHTML = "<a href='index.html' class='menu_button'><h1>Home</h1></a>";*/
+}
+
+function user_input(){
+	input_temp = prompt("Please enter indoor temp", "temp");
+    if (input_temp != null) {
+    	alert(input_temp);
+    	input_temp = String(input_temp)
+    	alert(input_temp);
+		indoor_temp(input_temp);
+    }else{
+    	alert('Invalid Input!');
+    }
 }

@@ -1,10 +1,10 @@
  <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome</title>
-  <link rel="stylesheet" href="styles.css">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <script type="text/javascript" src="script_functions.js"></script>
+	<title>Welcome</title>
+	<link rel="stylesheet" href="styles.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="script_functions.js"></script>
 </head>
 <body onload="startTime()">
 	<table id="main_table">
@@ -14,39 +14,46 @@
 					<table id="menu_table">
 						<tbody id="menu_tbody">
 							<tr class="menu_row">
-								<td class="menu_content">
+								<td class="menu_content" onmouseover="">
 									<h1>
 										<h1>Menu</h1>
 									</h1>
 								</td>
 							</tr>
-							<tr class="menu_row">
-								<td class="menu_content">
-									<a href="index.html" class="menu_button">
-										<h1>Home</h1>
-									</a>
-								</td>
-							</tr>
-							<tr class="menu_row">
-								<td class="menu_content">
-									<h1 onclick="add_warning()" class="menu_button" id="add_warning_button">Add Warning</h1>
-								</td>
-							</tr>
-							<tr class="menu_row">
-								<td class="menu_content">
-									<h1 onclick="remove_warning()" class="menu_button">Remove Warning</h1>
-								</td>
-							</tr>
-							<tr class="menu_row">
-								<td class="menu_content">
-									<h1 onclick="indoor_temp()" class="menu_button">Indoor Temp</h1>
-								</td>
-							</tr>	
-							<tr class="menu_row">
-								<td class="menu_content">
-									<h1 onclick="outdoor_temp()" class="menu_button">Outdoor Temp</h1>
-								</td>
-							</tr>
+							<div id="menu_display_div">
+								<tr class="menu_row_inactive">
+									<td class="menu_content">
+										<a href="index.html" class="menu_button">
+											<h1>Home</h1>
+										</a>
+									</td>
+								</tr>
+								<tr class="menu_row_inactive">
+									<td class="menu_content">
+										<h1 onclick="add_warning()" class="menu_button" id="add_warning_button">Add Warning</h1>
+									</td>
+								</tr>
+								<tr class="menu_row_inactive">
+									<td class="menu_content">
+										<h1 onclick="remove_warning()" class="menu_button">Remove Warning</h1>
+									</td>
+								</tr>
+								<tr class="menu_row_inactive">
+									<td class="menu_content">
+										<h1 onclick="indoor_temp()" class="menu_button">Indoor Temp</h1>
+									</td>
+								</tr>
+								<tr class="menu_row_inactive">
+									<td class="menu_content">
+										<h1 onclick="outdoor_temp()" class="menu_button">Outdoor Temp</h1>
+									</td>
+								</tr>
+								<tr class="menu_row_inactive">
+									<td class="menu_content" id="demo">
+										<h1 onclick="user_input()" class="menu_button">Test Input</h1>
+									</td>
+								</tr>
+							</div>
 						</tbody>
 					</table>
 				</div>
