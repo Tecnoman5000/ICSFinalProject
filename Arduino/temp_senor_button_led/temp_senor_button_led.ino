@@ -66,7 +66,7 @@ void temp_sensor()
   Serial.print(temperatureC); 
   Serial.println(" degrees C");
   // now convert to Fahrenheit
-  float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
+  //float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
   //Serial.print(temperatureF); 
   //Serial.println(" degrees F");
   //delay(1000); //waiting a second 
