@@ -4,14 +4,14 @@
 
 byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 }; // RESERVED MAC ADDRESS
 EthernetClient client;
+char server[] = "192.168.1.20"; // IP Adres (or name) of server to dump data to
 
 long previousMillis = 0;
 unsigned long currentMillis = 0;
 long interval = 250000; // READING INTERVAL
 
 int t = 0;	// TEMPERATURE VAR
-int h = 0;	// HUMIDITY VAR
-String data;
+String temp = "*";  //String to send
 
 int sensorPin = 0; //the analog pin the TMP36's Vout (sense) pin is connected to
 //the resolution is 10 mV / degree centigrade with a
@@ -26,34 +26,45 @@ void setup() {
         }else{
                 Serial.println("Connected via Ethernet using DHCP");  
         }
-	data = "";
+        Serial.print("IP Address        : ");
+        Serial.println(Ethernet.localIP());
+        Serial.print("Subnet Mask       : ");
+        Serial.println(Ethernet.subnetMask());
+        Serial.print("Default Gateway IP: ");
+        Serial.println(Ethernet.gatewayIP());
+        Serial.print("DNS Server IP     : ");
+        Serial.println(Ethernet.dnsServerIP());
 }
 
 void loop(){
 
-	currentMillis = millis();
-	if(currentMillis - previousMillis > interval) { // READ ONLY ONCE PER INTERVAL
-		previousMillis = currentMillis;
-	        t = (int)temp_sensor();
-	}
-
-	data = "temp1=", t, "&hum1=", h;
-
 	if (client.connect("192.168.1.20",80)) { // REPLACE WITH YOUR SERVER ADDRESS
-		client.println("POST /php_mysql_ethernet_arduino/add.php HTTP/1.1"); 
-		client.println("Host: 192.168.1.20"); // SERVER ADDRESS HERE TOO
-		client.println("Content-Type: application/x-www-form-urlencoded"); 
-		client.print("Content-Length: "); 
-		client.println(data.length()); 
-		client.println(); 
-		client.print(data); 
-	} 
+                Serial.println("-> Connected");
+                //Make a HTTP request
+                //client.println("GET /php_mysql_ethernet_arduino/add.php?temperature=24");
+                client.print("GET /php_mysql_ethernet_arduino/add.php?");
+                client.print("temperature=");
+	        t = (int)temp_sensor();
+                temp = String(t);
+                client.print(temp);
+                client.println(" HTTP/1.1");
+                client.print( "Host: " );
+                client.println(server);
+                client.println( "Connection: close" );
+                client.println();
+                client.println();
+                client.stop();
+        }
+        else {
+          // you didn't get a connection to the server:
+          Serial.println("--> connection failed/n");
+        }
 
 	if (client.connected()) { 
 		client.stop();	// DISCONNECT FROM THE SERVER
 	}
 
-	delay(300000); // WAIT FIVE MINUTES BEFORE SENDING AGAIN
+	delay(60000); // WAIT ONE MINUTE BEFORE SENDING AGAIN
 }
 
 float temp_sensor()

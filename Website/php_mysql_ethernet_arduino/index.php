@@ -2,9 +2,9 @@
 
 	include("connect.php"); 	
 	
-	$link=Connection();
+	$conn=Connection();
 
-	$result=mysql_query("SELECT * FROM `tempLog` ORDER BY `timeStamp` DESC",$link);
+	$result=mysql_query("SELECT * FROM `temp_log` ORDER BY `reg_date` DESC",$conn);
 ?>
 
 <html>
@@ -24,7 +24,7 @@
 		  if($result!==FALSE){
 		     while($row = mysql_fetch_array($result)) {
 		        printf("<tr><td> &nbsp;%s </td><td> &nbsp;%s&nbsp; </td></tr>", 
-		           $row["temp"], $row["timeStamp"]);
+		           $row["temp"], $row["reg_date"]);
 		     }
 		     mysql_free_result($result);
 		     mysql_close();

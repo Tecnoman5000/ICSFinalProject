@@ -1,18 +1,24 @@
 <?php
    	include("connect.php");
    	
-   	$link=Connection();
+   	$conn=Connection();
 
-	$temp1=$_POST["temp"];
-	$timestamp1=$_POST["timestamp"];
+	//$temp=$_POST["temp"];
 
-	$query = "INSERT INTO `temp_log` (`temp`, `timestamp`) 
-		VALUES ('".$temp1."','".$timestamp1."')"; 
-   		
-	echo("test2");
+	//data to enter into MySQL (table = temp_log; column = temp; data_to_enter = 22;)
+	$query = "INSERT INTO temp_log (temp)
+		VALUES ('".$_GET["temperature"]."')";
 	
-   	mysql_query($query,$link);
-	mysql_close($link);
+	//if the query is successful echo
+	if (mysql_query($query, $conn)) {
+		echo "New record created successfully";
+	} else { //if not present the error
+		echo "Error: " . $query . "<br>" . mysql_error($conn);
+	}
+	
+   	//close the connection
+	mysql_close($conn);
 
+	//return to the main page
    	header("Location: index.php");
 ?>

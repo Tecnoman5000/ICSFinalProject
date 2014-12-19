@@ -6,14 +6,15 @@
 		$pass="bigman";
 		$db="sensor_temp";
 	   	
-		$connection = mysql_connect($server, $user, $pass);
+		$conn = mysql_connect($server, $user, $pass);
 
-		if (!$connection) {
+		if (!$conn) {
 	    	die('MySQL ERROR: ' . mysql_error());
+			echo("Bad connection");
 		}
 		
 		mysql_select_db($db) or die( 'MySQL ERROR: '. mysql_error() );
 
-		return $connection;
+		return $conn;
 	}
 ?>
