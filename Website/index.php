@@ -1,4 +1,10 @@
- <!DOCTYPE html>
+<?php
+	include("connect.php"); 	
+	$conn=Connection();
+	include('update_indoor_temp.php');
+?>
+
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Welcome</title>
@@ -67,7 +73,12 @@
 									<tr id="weather_row">
 										<td id="weather_content">
 											<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
-											<h1 id="temp">22&#176C</h1>
+											<h1 id="temp">
+												<?php 
+													print get_temp();
+													print "&#176C";
+												?>
+											</h1>
 										</td>
 									</tr>
 									<tr id="time_row">
