@@ -1,4 +1,4 @@
-var outside_temp_shown = false;
+var outside_temp_shown = true;
 var previous_minute = 0; //start the timed minute check
 var previous_second = 0; //start the timed second check
 var num_of_warnings = 0; //hold the number of active warnings
@@ -9,6 +9,7 @@ function init(){
 	startTime();
 	second_update();
 	minute_update();
+	outdoor_temp();
 }
 
 //run on the minute
@@ -89,6 +90,7 @@ function weather_update(){
 //display indoor temp
 function indoor_temp(){
 	document.getElementById("temp_outdoor").style.display = "none";
+	document.getElementById("weather_icon").src= "01d.png"; // update weather icon
 	document.getElementById("temp_indoor").style.display = "inline";
 	outside_temp_shown = false;
 }
@@ -100,7 +102,7 @@ function outdoor_temp(){
 	var outside_temp = Math.round(weather_update().main.temp - 273.15); //calculate the temp in C
 	var icon_name = weather_update().weather[0].icon; //hold icon name
 	document.getElementById("temp_outdoor_h1").innerHTML = outside_temp+"&#176C"; //get current outside temp from api
-	document.getElementById("weather_icon").src="icons/"+icon_name+".png"; // update weather icon
+	document.getElementById("weather_icon").src= icon_name+".png"; // update weather icon
 	document.getElementById("temp_outdoor").style.display = "inline";
 	outside_temp_shown = true;
 }

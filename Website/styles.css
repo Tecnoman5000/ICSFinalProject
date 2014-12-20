@@ -8,9 +8,15 @@ html,body,table{
 	height:100%;
 }
 
+#banner_table{
+	width:100%;
+	height:auto;
+}
+
 #main_table{
 	width:100%;
 	text-align:center;
+	height:auto;
 }
 
 #main_menu_div{
@@ -87,6 +93,10 @@ h3,h1.main_mid_cell{
 	line-height:0px;
 }
 
+#weather_content_div{	
+	vertical-align:top;
+}
+
 #weather_icon{
 	float:left;
 }
@@ -94,6 +104,10 @@ h3,h1.main_mid_cell{
 #weather_content{
 	text-align:right;
 	font-size:200%;
+}
+
+#temp_indoor{
+	display:none;
 }
 
 /*#time_row{    

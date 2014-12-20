@@ -8,6 +8,7 @@
 <html>
 <head>
 	<title>Morey - Home Information</title>
+	<link rel="shortcut icon" href="/logo.ico" >
 	<link rel="stylesheet" href="styles.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<script type="text/javascript" src="script_functions.js"></script>
@@ -16,12 +17,19 @@
 	//reload the weather div every minute
 	$(document).ready(function() {
 			setInterval(function() {
-				$('#weather_content_div').load(document.URL +  ' #weather_content_div');
+				$('#temp_indoor').load(document.URL +  ' #temp_indoor');
 			}, 60000);
 		});
 	</script>
 </head>
 <body onload="init()">
+	<table id="banner_table">
+		<tr style="background-color:#3399FF">
+			<td>
+				<img src="/logo.png" alt="logo" width="50px" height="50px">
+			</td>
+		</tr>
+	</table>
 	<table id="main_table">
 		<tr id="main_row">
 			<td id="main_menu_cell">
@@ -76,8 +84,8 @@
 								<table id="weather_table">
 									<tr id="weather_row">
 										<td id="weather_content">
-											<div id="weather_content_div">
-												<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
+											<img src="/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
+											<div id="weather_content_div" align="left">
 												<span id="temp_indoor" title="<?php print get_temp_timestamp(); ?>">
 													<h1 id="temp_indoor_h1">
 														<?php 
