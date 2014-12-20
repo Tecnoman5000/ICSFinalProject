@@ -7,10 +7,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome</title>
+	<title>Morey - Home Information</title>
 	<link rel="stylesheet" href="styles.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<script type="text/javascript" src="script_functions.js"></script>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+	<script type="text/javascript">
+	//reload the weather div every minute
+	$(document).ready(function() {
+			setInterval(function() {
+				$('#weather_content_div').load(document.URL +  ' #weather_content_div');
+			}, 60000);
+		});
+	</script>
 </head>
 <body onload="init()">
 	<table id="main_table">
@@ -72,15 +81,17 @@
 								<table id="weather_table">
 									<tr id="weather_row">
 										<td id="weather_content">
-											<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
-											<span title="<?php print get_temp_timestamp(); ?>">
-												<h1 id="temp">
-													<?php 
-														print get_temp();
-														print "&#176C";
-													?>
-												</h1>
-											</span>
+											<div id="weather_content_div">
+												<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
+												<span title="<?php print get_temp_timestamp(); ?>">
+													<h1 id="temp">
+														<?php 
+															print get_temp();
+															print "&#176C";
+														?>
+													</h1>
+												</span>
+											</div>
 										</td>
 									</tr>
 									<tr id="time_row">
