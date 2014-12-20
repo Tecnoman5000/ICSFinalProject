@@ -63,11 +63,6 @@
 										<h1 onclick="outdoor_temp()" class="menu_button">Outdoor Temp</h1>
 									</td>
 								</tr>
-								<tr class="menu_row_inactive">
-									<td class="menu_content" id="demo">
-										<h1 onclick="user_input()" class="menu_button">Test Input</h1>
-									</td>
-								</tr>
 							</div>
 						</tbody>
 					</table>
@@ -83,12 +78,16 @@
 										<td id="weather_content">
 											<div id="weather_content_div">
 												<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
-												<span title="<?php print get_temp_timestamp(); ?>">
-													<h1 id="temp">
+												<span id="temp_indoor" title="<?php print get_temp_timestamp(); ?>">
+													<h1 id="temp_indoor_h1">
 														<?php 
 															print get_temp();
 															print "&#176C";
 														?>
+													</h1>
+												</span>
+												<span id="temp_outdoor">
+													<h1 id="temp_outdoor_h1">
 													</h1>
 												</span>
 											</div>

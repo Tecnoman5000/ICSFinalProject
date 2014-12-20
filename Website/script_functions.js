@@ -3,7 +3,6 @@ var previous_minute = 0; //start the timed minute check
 var previous_second = 0; //start the timed second check
 var num_of_warnings = 0; //hold the number of active warnings
 var warnings_timeout = []; //hold the point at which a warning should be removed
-var pro_indoor_temp = '22'; //hold the init indoor temp
 
 //init function
 function init(){
@@ -17,7 +16,7 @@ function minute_update(){
 	if (outside_temp_shown){ //check is the outside temp is currently displayed
 		outdoor_temp(); //update outside temp
 	}else{ //if inside temp is displayed
-			indoor_temp(pro_indoor_temp); //update indoor temp
+			indoor_temp(); //update indoor temp
 	}
 
 	var minute = setTimeout(minute_update, 60000);
@@ -88,18 +87,21 @@ function weather_update(){
 }
 
 //display indoor temp
-function indoor_temp(pro_indoor_temp){
-	//document.getElementById("temp").innerHTML = "<?php print get_temp(); print '&#176C'; ?>"; //find element and update it
-	//document.getElementById("weather_icon").src="icons/01d.png"; // update icon
+function indoor_temp(){
+	document.getElementById("temp_outdoor").style.display = "none";
+	document.getElementById("temp_indoor").style.display = "inline";
 	outside_temp_shown = false;
 }
 
 //display outside temp
 function outdoor_temp(){
+	document.getElementById("temp_indoor").style.display = "none";
+
 	var outside_temp = Math.round(weather_update().main.temp - 273.15); //calculate the temp in C
 	var icon_name = weather_update().weather[0].icon; //hold icon name
-	document.getElementById("temp").innerHTML = outside_temp+"&#176C"; //get current outside temp from api
+	document.getElementById("temp_outdoor_h1").innerHTML = outside_temp+"&#176C"; //get current outside temp from api
 	document.getElementById("weather_icon").src="icons/"+icon_name+".png"; // update weather icon
+	document.getElementById("temp_outdoor").style.display = "inline";
 	outside_temp_shown = true;
 }
 
@@ -151,16 +153,6 @@ function menu_open(){
 	var button_home = row.insertCell(0);
 	button_home.className = "menu_content";
 	button_home.innerHTML = "<a href='index.html' class='menu_button'><h1>Home</h1></a>";*/
-}
-
-//testing with user input
-function user_input(){
-	input_temp = prompt("Please enter indoor temp", "temp"); //create pop-up window asking for the temp
-    if (input_temp != null && input_temp != '' && isNumber(input_temp) && input_temp.length <= 2) { //check for a proper input
-		indoor_temp(input_temp); //update the temp display
-    }else{
-    	alert('Invalid Input!'); //alert that the input wasn't valid
-    }
 }
 
 /////////////////////////
