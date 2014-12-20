@@ -2,8 +2,8 @@
    	include("connect.php");
    	
    	$conn=Connection();
-
-	//$temp=$_POST["temp"];
+	
+	mysql_query("SET SESSION time_zone = '-5:00'"); 
 
 	//data to enter into MySQL (table = temp_log; column = temp; data_to_enter = 22;)
 	$query = "INSERT INTO temp_log (temp)

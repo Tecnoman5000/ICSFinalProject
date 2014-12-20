@@ -89,9 +89,8 @@ function weather_update(){
 
 //display indoor temp
 function indoor_temp(pro_indoor_temp){
-	//var get_indoor_temp = "?php include('/php_mysql_ethernet_arduino/update_indoor_temp.php'); print get_temp();?";
-	//document.getElementById("temp").innerHTML = pro_indoor_temp+"&#176C"; //find element and update it
-	document.getElementById("weather_icon").src="icons/01d.png"; // update icon
+	//document.getElementById("temp").innerHTML = "<?php print get_temp(); print '&#176C'; ?>"; //find element and update it
+	//document.getElementById("weather_icon").src="icons/01d.png"; // update icon
 	outside_temp_shown = false;
 }
 

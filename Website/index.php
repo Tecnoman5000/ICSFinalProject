@@ -29,7 +29,7 @@
 							<div id="menu_display_div">
 								<tr class="menu_row_inactive">
 									<td class="menu_content">
-										<a href="index.html" class="menu_button">
+										<a href="index.php" class="menu_button">
 											<h1>Home</h1>
 										</a>
 									</td>
@@ -73,12 +73,14 @@
 									<tr id="weather_row">
 										<td id="weather_content">
 											<img src="icons/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
-											<h1 id="temp">
-												<?php 
-													print get_temp();
-													print "&#176C";
-												?>
-											</h1>
+											<span title="<?php print get_temp_timestamp(); ?>">
+												<h1 id="temp">
+													<?php 
+														print get_temp();
+														print "&#176C";
+													?>
+												</h1>
+											</span>
 										</td>
 									</tr>
 									<tr id="time_row">

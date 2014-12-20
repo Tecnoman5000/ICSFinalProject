@@ -1,6 +1,7 @@
 #include <DHT.h>
 #include <Ethernet.h>
 #include <SPI.h>
+#include <math.h>
 
 byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 }; // RESERVED MAC ADDRESS
 EthernetClient client;
@@ -18,7 +19,7 @@ int sensorPin = 0; //the analog pin the TMP36's Vout (sense) pin is connected to
 //500 mV offset to allow for negative temperatures
 
 void setup() { 
-	Serial.begin(115200);
+	Serial.begin(9600);
         Serial.println("test");  
 
 	if (Ethernet.begin(mac) == 0) {
@@ -41,10 +42,10 @@ void loop(){
 	if (client.connect("192.168.1.20",80)) { // REPLACE WITH YOUR SERVER ADDRESS
                 Serial.println("-> Connected");
                 //Make a HTTP request
-                //client.println("GET /php_mysql_ethernet_arduino/add.php?temperature=24");
-                client.print("GET /php_mysql_ethernet_arduino/add.php?");
+                //client.println("GET /add.php?temperature=24");
+                client.print("GET /add.php?");
                 client.print("temperature=");
-	        t = (int)temp_sensor();
+	        t = round(temp_sensor());
                 temp = String(t);
                 client.print(temp);
                 client.println(" HTTP/1.1");
@@ -90,6 +91,4 @@ float temp_sensor()
   
   return (temperatureC);
 }
-
-
 
