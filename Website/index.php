@@ -111,7 +111,6 @@
 						</tr>
 						<tr align="center">
 							<td id="content_video_feed" align="center">
-								<h1>Video Feed</h1>
 							</td>
 						</tr>
 					</table>

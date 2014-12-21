@@ -10,6 +10,7 @@ function init(){
 	second_update();
 	minute_update();
 	outdoor_temp();
+	document.getElementById('content_video_feed').innerHTML = '<iframe src ="http://192.168.1.24:8083/" width="650px" height="500px" frameBorder="0"> <h1>Video Feed</h1> <p>Your browser does not support iframes.</p> </iframe>'
 }
 
 //run on the minute
