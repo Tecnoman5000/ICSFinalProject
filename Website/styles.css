@@ -8,11 +8,6 @@ html,body,table{
 	height:100%;
 }
 
-#banner_table{
-	width:100%;
-	height:auto;
-}
-
 #main_table{
 	width:100%;
 	text-align:center;
@@ -125,7 +120,7 @@ h3,h1.main_mid_cell{
 	background-color:#3399FF;
 	color:#ffffff;
 	height:480px;
-	width:660px;
+	width:640px;
 }
 
 #main_warnings_cell{

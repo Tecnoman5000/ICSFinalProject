@@ -3,6 +3,7 @@ var previous_minute = 0; //start the timed minute check
 var previous_second = 0; //start the timed second check
 var num_of_warnings = 0; //hold the number of active warnings
 var warnings_timeout = []; //hold the point at which a warning should be removed
+var video_shown = false;
 
 //init function
 function init(){
@@ -10,7 +11,7 @@ function init(){
 	second_update();
 	minute_update();
 	outdoor_temp();
-	document.getElementById('content_video_feed').innerHTML = '<iframe src ="http://192.168.1.24:8083/" width="650px" height="500px" frameBorder="0"> <h1>Video Feed</h1> <p>Your browser does not support iframes.</p> </iframe>'
+	//document.getElementById('content_video_feed').innerHTML = '<iframe src ="http://192.168.1.24:8083/" width="650px" height="500px" frameBorder="0"> <h1>Video Feed</h1> <p>Your browser does not support iframes.</p> </iframe>';
 }
 
 //run on the minute
@@ -156,6 +157,16 @@ function menu_open(){
 	var button_home = row.insertCell(0);
 	button_home.className = "menu_content";
 	button_home.innerHTML = "<a href='index.html' class='menu_button'><h1>Home</h1></a>";*/
+}
+
+function video_toggle(){
+	if (video_shown){
+		document.getElementById('content_video_feed').innerHTML = '<h1>Video Feed</h1><p>Video feed is disabled</p>';
+		video_shown = false;
+	}else{
+		document.getElementById('content_video_feed').innerHTML = '<iframe src ="http://192.168.1.24:8083/" width="650px" height="500px" frameBorder="0" scrolling="no"> <h1>Video Feed</h1> <p>Your browser does not support iframes.</p> </iframe>';
+		video_shown = true;
+	}
 }
 
 /////////////////////////

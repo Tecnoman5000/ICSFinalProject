@@ -23,13 +23,6 @@
 	</script>
 </head>
 <body onload="init()">
-	<table id="banner_table">
-		<tr style="background-color:#3399FF">
-			<td>
-				<img src="/logo.png" alt="logo" width="50px" height="50px">
-			</td>
-		</tr>
-	</table>
 	<table id="main_table">
 		<tr id="main_row">
 			<td id="main_menu_cell">
@@ -38,9 +31,7 @@
 						<tbody id="menu_tbody">
 							<tr class="menu_row">
 								<td class="menu_content" onmouseover="">
-									<h1>
-										<h1>Menu</h1>
-									</h1>
+									<img src="/logo.png" alt="logo" width="50px" height="50px">
 								</td>
 							</tr>
 							<div id="menu_display_div">
@@ -69,6 +60,11 @@
 								<tr class="menu_row_inactive">
 									<td class="menu_content">
 										<h1 onclick="outdoor_temp()" class="menu_button">Outdoor Temp</h1>
+									</td>
+								</tr>
+								<tr class="menu_row_inactive">
+									<td class="menu_content">
+										<h1 onclick="video_toggle()" class="menu_button">Video Toggle</h1>
 									</td>
 								</tr>
 							</div>
@@ -111,6 +107,8 @@
 						</tr>
 						<tr align="center">
 							<td id="content_video_feed" align="center">
+								<h1>Video Feed</h1>
+								<p>Video feed is disabled</p>
 							</td>
 						</tr>
 					</table>
