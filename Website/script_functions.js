@@ -148,7 +148,12 @@ function add_warning(){
 
 //remove warnings (needs a lot of work)
 function remove_warning(){
-		fade_out(document.getElementById("toDelete"), "toDelete_row");
+	var e = document.getElementById("toDelete");
+	if (isEmpty($(e))) {
+		console.log("Element is null, fading cancelled")
+	}else{
+		fade_out(e, "toDelete_row");
+	}
 }
 
 
@@ -197,17 +202,17 @@ function fade_in(element) {
 
 //fade out element
 function fade_out(element, row) {
-    var op = 10;  // initial opacity
-    var timer = setInterval(function () {
-        if (op <= 0.1){
-            clearInterval(timer);
-            element.style.display = 'none';
-            document.getElementById(row).remove();
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= op * 0.1;
-    }, 50);
+	var op = 10;  // initial opacity
+	var timer = setInterval(function () {
+		if (op <= 0.1){
+			clearInterval(timer);
+			element.style.display = 'none';
+			document.getElementById(row).remove();
+		}
+		element.style.opacity = op;
+		element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+		op -= op * 0.1;
+	}, 50);
 }
 
 //return if a string is a number
@@ -221,3 +226,7 @@ function isNumber(num_to_check){
 Element.prototype.remove = function() { //usage 'document.getElementById(element).remove()'
     this.parentElement.removeChild(this);
 }
+
+  function isEmpty( el ){
+      return !$.trim(el.html())
+  }

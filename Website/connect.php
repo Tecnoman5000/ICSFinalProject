@@ -4,7 +4,7 @@
 		$server="localhost";
 		$user="root";
 		$pass="bigman";
-		$db="sensor_temp";
+		$db="MAH_db";
 	   	
 		$conn = mysql_connect($server, $user, $pass);
 
