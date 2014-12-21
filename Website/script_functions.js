@@ -89,10 +89,18 @@ function weather_update(){
 	return (weather_outside_info) //return the current temp
 }
 
+function temp_load(){
+	if (outside_temp_shown){
+		outdoor_temp();
+	}else{
+		indoor_temp();
+	}
+}
+
 //display indoor temp
 function indoor_temp(){
 	document.getElementById("temp_outdoor").style.display = "none";
-	document.getElementById("weather_icon").src= "01d.png"; // update weather icon
+	document.getElementById("weather_icon").src= "house.png"; // update weather icon
 	document.getElementById("temp_indoor").style.display = "inline";
 	outside_temp_shown = false;
 }

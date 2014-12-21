@@ -17,7 +17,8 @@
 	//reload the weather div every minute
 	$(document).ready(function() {
 			setInterval(function() {
-				$('#temp_indoor').load(document.URL +  ' #temp_indoor');
+				$('#weather_content_div').load(document.URL +  ' #weather_content_div');
+				temp_load();
 			}, 60000);
 		});
 	</script>
