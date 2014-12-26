@@ -2,6 +2,7 @@
 	include("connect.php"); 	
 	$conn=Connection();
 	include('update_indoor_temp.php');
+	include('exception_check.php');
 ?>
 
 <!DOCTYPE html>
@@ -53,21 +54,6 @@
 										<h1 onclick="remove_warning()" class="menu_button">Remove Warning</h1>
 									</td>
 								</tr>
-								<tr class="menu_row_inactive">
-									<td class="menu_content">
-										<h1 onclick="indoor_temp('22')" class="menu_button">Indoor Temp</h1>
-									</td>
-								</tr>
-								<tr class="menu_row_inactive">
-									<td class="menu_content">
-										<h1 onclick="outdoor_temp()" class="menu_button">Outdoor Temp</h1>
-									</td>
-								</tr>
-								<tr class="menu_row_inactive">
-									<td class="menu_content">
-										<h1 onclick="video_toggle()" class="menu_button">Video Toggle</h1>
-									</td>
-								</tr>
 							</div>
 						</tbody>
 					</table>
@@ -81,7 +67,7 @@
 								<table id="weather_table">
 									<tr id="weather_row">
 										<td id="weather_content">
-											<img src="/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px">
+											<img src="/01d.png" alt="Sunny" id="weather_icon" width="70px" height="70px" title="Click to Toggle" onclick="temp_toggle()">
 											<div id="weather_content_div" align="left">
 												<span id="temp_indoor" title="<?php print get_temp_timestamp(); ?>">
 													<h1 id="temp_indoor_h1">
@@ -107,9 +93,9 @@
 							</td>
 						</tr>
 						<tr align="center">
-							<td id="content_video_feed" align="center">
+							<td id="content_video_feed" align="center" onclick="video_toggle()">
 								<h1>Video Feed</h1>
-								<p>Video feed is disabled</p>
+								<p>Video feed is disabled (Clicked to Enable)</p>
 							</td>
 						</tr>
 					</table>

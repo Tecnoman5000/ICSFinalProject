@@ -5,7 +5,7 @@
 	
 	mysql_query("SET SESSION time_zone = '-5:00'"); 
 
-	//data to enter into MySQL (table = temp_log; column = temp; data_to_enter = 22;)
+	//data to enter into MySQL
 	$query = "INSERT INTO exception_log (exception_text)
 		VALUES ('".$_GET["exception"]."')";
 	
@@ -20,5 +20,5 @@
 	mysql_close($conn);
 
 	//return to the main page
-   	header("Location: index.php");
+   	//header("Location: index.php");
 ?>

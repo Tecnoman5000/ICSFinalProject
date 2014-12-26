@@ -117,6 +117,16 @@ function outdoor_temp(){
 	outside_temp_shown = true;
 }
 
+function temp_toggle(){
+	if (outside_temp_shown){
+		indoor_temp();
+		outside_temp_shown = false;
+	}else{
+		outdoor_temp();
+		outside_temp_shown = true;
+	}
+}
+
 
 //add warnings
 function add_warning(){
@@ -174,10 +184,11 @@ function menu_open(){
 
 function video_toggle(){
 	if (video_shown){
-		document.getElementById('content_video_feed').innerHTML = '<h1>Video Feed</h1><p>Video feed is disabled</p>';
+		document.getElementById('content_video_feed').innerHTML = '<h1>Video Feed</h1><p>Video feed is disabled (Clicked to Enable)</p>';
 		video_shown = false;
 	}else{
-		document.getElementById('content_video_feed').innerHTML = '<iframe src ="http://192.168.1.24:8083/" width="650px" height="500px" frameBorder="0" scrolling="no"> <h1>Video Feed</h1> <p>Your browser does not support iframes.</p> </iframe>';
+		//document.getElementById('content_video_feed').innerHTML = '<iframe src ="http://192.168.1.24:8083/" alt="Your browser does not support iframes." width="640px" height="480px" frameBorder="0" scrolling="no"> </iframe> <p>Clicked to Disable</p>';
+		document.getElementById('content_video_feed').innerHTML = '<img alt="http://192.168.1.24:8083/" src="http://192.168.1.24:8083/"/><p>Clicked to Disable</p>';
 		video_shown = true;
 	}
 }

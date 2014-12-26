@@ -3,7 +3,7 @@
    	
    	$conn=Connection();
 	
-	/*// sql to create table
+	// sql to create table
 	$sql = "CREATE TABLE exception_log (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	exception_text VARCHAR(30) NOT NULL,
@@ -11,10 +11,10 @@
 	)";
 	
 	if (mysql_query($sql, $conn)) {
-		echo "Table temp_log created successfully";
+		echo "Table 'motion' created successfully";
 	} else {
 		echo "Error creating table: " . mysql_error($conn);
-	}*/
+	}
 
 	//data to enter into MySQL (table = temp_log; column = temp; data_to_enter = 22;)
 	/*$query = "INSERT INTO temp_log (temp)
