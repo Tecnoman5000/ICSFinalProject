@@ -3,10 +3,17 @@
    	
    	$conn=Connection();
 	
-	// sql to create table
+	/*// sql to create exception log table
 	$sql = "CREATE TABLE exception_log (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	exception_text VARCHAR(30) NOT NULL,
+	reg_date TIMESTAMP
+	)";*/
+	
+	// sql to create temp_log table
+	$sql = "CREATE TABLE temp_log (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	temp VARCHAR(30) NOT NULL,
 	reg_date TIMESTAMP
 	)";
 	
