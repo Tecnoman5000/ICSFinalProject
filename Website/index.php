@@ -3,6 +3,10 @@
 	$conn=Connection();
 	include('update_indoor_temp.php');
 	include('exception_check.php');
+	static $old_motion_id = 0;
+	static $motion_id = 0;
+	static $motion_timer = 0;
+	$motion_id = get_exception_id();
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +24,12 @@
 			setInterval(function() {
 				$('#weather_content_div').load(document.URL +  ' #weather_content_div');
 				temp_load();
+				console.log('Weather Update')
 			}, 60000);
+			setInterval(function() {
+				$('#warnings_cell_motion').load(document.URL +  ' #warnings_cell_motion');
+				console.log('Alert Update')
+			}, 1000);
 		});
 	</script>
 </head>
@@ -42,16 +51,6 @@
 										<a href="index.php" class="menu_button">
 											<h1>Home</h1>
 										</a>
-									</td>
-								</tr>
-								<tr class="menu_row_inactive">
-									<td class="menu_content">
-										<h1 onclick="add_warning()" class="menu_button" id="add_warning_button">Add Warning</h1>
-									</td>
-								</tr>
-								<tr class="menu_row_inactive">
-									<td class="menu_content">
-										<h1 onclick="remove_warning()" class="menu_button">Remove Warning</h1>
 									</td>
 								</tr>
 							</div>
@@ -108,6 +107,54 @@
 							<td id="warnings_cell">
 								<h1>Warnings</h1>
 							</td>
+						</tr>
+						<tr class="warnings_row">
+							<div id="warning_motion_div">
+								<td id="warnings_cell_motion">
+									<?php
+										/*$old_motion_id = $motion_id -1;
+										print $old_motion_id;
+										print "\r\n";
+										$motion_id = get_exception_id();
+										print $motion_id;
+										print "\r\n";
+										print $motion_timer;
+										print "\r\n";
+										if ($old_motion_id != $motion_id){
+											$motion_timer = 30;
+											print 'different';
+											$motion_timer -= 1;
+											if ($motion_timer < 1){
+												print 'same';
+											}
+										}*/
+										//print $old_motion_id;
+										//print "\r\n";
+										
+										if (get_exception_text() == 'motion_detected'){
+										//if ($old_motion_id != $motion_id){ # If the id has changed
+										//$motion_timer = 30;
+											print '<h1>';
+											print 'Motion Detected';
+											print '</h1>';
+											print "\n";
+											print get_exception_timestamp();
+											print "\r\n";
+											print '<img alt="http://192.168.1.24:8083/" src="http://192.168.1.24:8083/" width="64" height="48"/>';
+										//}
+										}
+										/*}else{ # If the id is the same
+											$motion_timer--;
+											print $motion_timer;
+											if ($motion_timer < 1){
+												print 'No New Motion Found';
+											}
+										}*/
+										//print "\r\n";
+										//print $GLOBALS['motion_id'];
+									?>
+								</td>
+							</div>
 						</tr>
 					</table>
 				</div>

@@ -16,7 +16,7 @@
 		} else { //if not present the error
 			echo "Error: " . $query . "<br>" . mysql_error($GLOBALS['conn']);
 		}
-		return $id;
+		return (int)$id;
 	}
 	function get_exception_text(){
 		$query = "SELECT exception_text FROM exception_log ORDER BY id DESC LIMIT 1;";

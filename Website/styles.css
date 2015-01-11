@@ -112,7 +112,6 @@ h3,h1.main_mid_cell{
 
 #time_content{
 	font-size:350%;
-	width:230;
 }
 
 #content_video_feed{
@@ -132,4 +131,8 @@ h3,h1.main_mid_cell{
 
 #main_warnings_cell{
 	vertical-align:top;
+}
+
+#warnings_cell_motion{
+	color:red;
 }
